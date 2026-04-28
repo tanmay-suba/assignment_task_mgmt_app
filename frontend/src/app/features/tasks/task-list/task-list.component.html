@@ -1,0 +1,81 @@
+<section class="task-list">
+  <div *ngIf="loading" class="skeleton-grid">
+    <div class="skeleton-card" *ngFor="let item of [1,2,3,4]"></div>
+  </div>
+
+  <div *ngIf="!loading && error" class="state-card error">
+    <mat-icon>error_outline</mat-icon>
+    <div>
+      <h3>We hit a snag</h3>
+      <p>{{ error }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && tasks.length === 0" class="state-card empty">
+    <mat-icon>assignment</mat-icon>
+    <div>
+      <h3>No tasks yet</h3>
+      <p>Create your first task to get momentum.</p>
+      <button mat-flat-button color="primary" (click)="create.emit()">Create task</button>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && tasks.length > 0" class="task-grid">
+    <mat-card class="task-card" *ngFor="let task of tasks">
+      <div class="task-header">
+        <mat-checkbox
+          [checked]="task.status === 'Done'"
+          (change)="toggleComplete.emit({ task, isComplete: $event.checked })"
+          aria-label="Toggle complete"
+        ></mat-checkbox>
+
+        <div class="title-block">
+          <input
+            *ngIf="editingId() === task.id"
+            matInput
+            [value]="draftTitle()"
+            (input)="draftTitle.set($any($event.target).value)"
+            (keydown.enter)="saveInlineEdit(task)"
+            (keydown.escape)="cancelInlineEdit()"
+            (blur)="saveInlineEdit(task)"
+          />
+
+          <button
+            *ngIf="editingId() !== task.id"
+            class="title-button"
+            type="button"
+            (click)="startInlineEdit(task)"
+          >
+            {{ task.title }}
+          </button>
+
+          <span class="overdue" *ngIf="isOverdue(task)">Overdue</span>
+        </div>
+
+        <div class="task-actions">
+          <button mat-icon-button matTooltip="Edit" (click)="edit.emit(task)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Delete" (click)="delete.emit(task)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <p class="description" *ngIf="task.description">{{ task.description }}</p>
+
+      <div class="meta-row">
+        <mat-chip-set>
+          <mat-chip class="status" [class.done]="task.status === 'Done'">{{ task.status }}</mat-chip>
+          <mat-chip class="priority" [class.high]="task.priority === 'High'">{{ task.priority }}</mat-chip>
+        </mat-chip-set>
+
+        <div class="meta-info">
+          <span *ngIf="task.dueDate">Due {{ task.dueDate | date: 'MMM d' }}</span>
+          <span class="dot">•</span>
+          <span>Updated {{ task.updatedAt | date: 'MMM d' }}</span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</section>

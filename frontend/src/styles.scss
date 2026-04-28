@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$blue-grey-palette, 700);
+$accent: mat.define-palette(mat.$amber-palette, 500);
+$warn: mat.define-palette(mat.$red-palette, 600);
+
+$theme: mat.define-light-theme((
+	color: (
+		primary: $primary,
+		accent: $accent,
+		warn: $warn
+	)
+));
+
+@include mat.all-component-themes($theme);
+
+:root {
+	--font-display: 'Space Grotesk', sans-serif;
+	--font-body: 'Source Sans 3', sans-serif;
+	--ink-900: #0f172a;
+	--ink-700: #334155;
+	--ink-600: #475569;
+	--ink-500: #64748b;
+	--accent-500: #f59e0b;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-body);
+	background: radial-gradient(circle at top left, rgba(245, 158, 11, 0.15), transparent 45%),
+		radial-gradient(circle at top right, rgba(14, 116, 144, 0.12), transparent 40%),
+		linear-gradient(180deg, #f8fafc 0%, #eef2f6 100%);
+	color: var(--ink-700);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-display);
+	color: var(--ink-900);
+}

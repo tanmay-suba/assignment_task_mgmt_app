@@ -1,0 +1,39 @@
+<div class="app-shell">
+  <header class="page-header">
+    <div class="title-group">
+      <p class="eyebrow">TaskFlow</p>
+      <h1>Focus on what matters today.</h1>
+      <p class="subtitle">Track work, nudge priorities, and keep momentum with quick inline edits.</p>
+    </div>
+    <div class="header-actions">
+      <button mat-raised-button color="primary" (click)="openCreate()">
+        <mat-icon>add</mat-icon>
+        New task
+      </button>
+    </div>
+  </header>
+
+  <app-task-filter (filtersChange)="onFiltersChange($event)"></app-task-filter>
+
+  <section class="summary-row">
+    <div class="summary-card">
+      <span class="label">Total tasks</span>
+      <span class="value">{{ total() }}</span>
+    </div>
+    <div class="summary-card warning" *ngIf="overdueCount() > 0">
+      <span class="label">Overdue</span>
+      <span class="value">{{ overdueCount() }}</span>
+    </div>
+  </section>
+
+  <app-task-list
+    [tasks]="tasks()"
+    [loading]="loading()"
+    [error]="error()"
+    (toggleComplete)="onToggleComplete($event)"
+    (edit)="openEdit($event)"
+    (delete)="onDelete($event)"
+    (inlineSave)="onInlineSave($event)"
+    (create)="openCreate()"
+  ></app-task-list>
+</div>

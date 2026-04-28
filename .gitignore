@@ -1,0 +1,22 @@
+# Node
+node_modules/
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+
+# Environment
+appsettings.Development.json
+
+# Planning docs
+PLAN.md

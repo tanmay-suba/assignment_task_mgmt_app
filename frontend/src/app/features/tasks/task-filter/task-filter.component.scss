@@ -1,0 +1,46 @@
+.filter-shell {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.search-row {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) 200px 200px auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-field,
+.sort-field,
+.date-field {
+  width: 100%;
+}
+
+.chip-row {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.chip-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chip-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: var(--ink-500);
+}
+
+@media (max-width: 900px) {
+  .search-row {
+    grid-template-columns: 1fr;
+  }
+}

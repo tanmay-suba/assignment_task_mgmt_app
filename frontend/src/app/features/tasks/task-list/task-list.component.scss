@@ -1,0 +1,121 @@
+.task-list {
+  margin-top: 1rem;
+}
+
+.task-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.task-card {
+  padding: 1.25rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.title-block {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.title-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--ink-900);
+  cursor: pointer;
+}
+
+.description {
+  margin: 0.75rem 0 0.5rem;
+  color: var(--ink-600);
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.meta-info {
+  font-size: 0.85rem;
+  color: var(--ink-500);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+.overdue {
+  font-size: 0.75rem;
+  color: #dc2626;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.status.done {
+  background: rgba(16, 185, 129, 0.15);
+}
+
+.priority.high {
+  background: rgba(248, 113, 113, 0.2);
+}
+
+.state-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.state-card.empty button {
+  margin-top: 0.5rem;
+}
+
+.skeleton-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.skeleton-card {
+  height: 140px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, rgba(226, 232, 240, 0.4), rgba(226, 232, 240, 0.8), rgba(226, 232, 240, 0.4));
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
