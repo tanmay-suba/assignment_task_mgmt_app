@@ -40,6 +40,8 @@ npm start
 - Swagger: http://localhost:5050/swagger
 - Web: http://localhost:4200
 
+Demo tasks are seeded automatically on first run.
+
 ### Full Compose (API + Web + Postgres)
 
 ```bash
@@ -55,9 +57,11 @@ docker compose up --build
 GET    /api/tasks?status=&priority=&search=&dueBefore=&sort=&page=&pageSize=
 POST   /api/tasks
 PUT    /api/tasks/{id}
-PATCH  /api/tasks/{id}/complete
+PATCH  /api/tasks/{id}/complete    body: { "isComplete": true | false }
 DELETE /api/tasks/{id}
 ```
+
+The `/complete` endpoint accepts a JSON body to support both completing and un-completing a task (toggle). Sending no body returns 415.
 
 ## UX Highlights
 
@@ -84,6 +88,7 @@ DELETE /api/tasks/{id}
 ## AI Tooling
 
 - GitHub Copilot (GPT-5.2-Codex) assisted with scaffolding the layered .NET solution, shaping DTOs/services, and drafting Angular components and styling.
+- Claude Code (claude.ai/code) was used for submission testing: running the full build pipeline (`dotnet build`, `dotnet test`, `npm run build`), standing up the Docker stack from a cold start, and smoke-testing every API endpoint end-to-end.
 - I reviewed, refactored, and adjusted outputs for architecture alignment, UX requirements, and runtime correctness.
 
 ## What I Would Do Next
