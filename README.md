@@ -36,8 +36,8 @@ cd frontend
 npm start
 ```
 
-- API: http://localhost:5000
-- Swagger: http://localhost:5000/swagger
+- API: http://localhost:5050
+- Swagger: http://localhost:5050/swagger
 - Web: http://localhost:4200
 
 ### Full Compose (API + Web + Postgres)
