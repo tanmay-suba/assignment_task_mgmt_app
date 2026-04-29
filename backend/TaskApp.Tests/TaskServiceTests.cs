@@ -22,7 +22,7 @@ public class TaskServiceTests
         }, CancellationToken.None);
 
         Assert.NotNull(result);
-        Assert.Equal(TaskStatus.Todo, result!.Status);
+        Assert.Equal(global::TaskApp.Domain.Enums.TaskStatus.Todo, result!.Status);
         Assert.Equal(1, await context.Tasks.CountAsync());
     }
 
@@ -41,7 +41,7 @@ public class TaskServiceTests
         var updated = await service.ToggleCompleteAsync(created!.Id, true, CancellationToken.None);
 
         Assert.NotNull(updated);
-        Assert.Equal(TaskStatus.Done, updated!.Status);
+        Assert.Equal(global::TaskApp.Domain.Enums.TaskStatus.Done, updated!.Status);
         Assert.NotNull(updated.CompletedAt);
     }
 
