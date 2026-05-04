@@ -2,6 +2,11 @@
 
 A focused task manager that highlights priorities, makes quick edits frictionless, and demonstrates clean layering across Angular, .NET, and Postgres.
 
+## Live Demo
+
+- Frontend: https://sogo-task.netlify.app (custom domain `tasks.tanmaysuba.com` coming soon)
+- API: https://api.tanmaysuba.com (hosted on a DigitalOcean VPS, fronted by Caddy)
+
 ## Stack and Architecture
 
 - Frontend: Angular 17 (standalone components, signals, Angular Material)
