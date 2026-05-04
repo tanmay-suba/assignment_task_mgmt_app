@@ -5,15 +5,15 @@ services:
     image: postgres:16
     container_name: taskapp-postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: taskapp
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-taskapp}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d taskapp"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-taskapp}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -25,9 +25,10 @@ services:
     container_name: taskapp-api
     environment:
       ASPNETCORE_URLS: http://+:5000
-      TASKAPP_CONNECTION: Host=postgres;Port=5432;Database=taskapp;Username=postgres;Password=postgres
+      TASKAPP_CONNECTION: Host=postgres;Port=5432;Database=${POSTGRES_DB:-taskapp};Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD:-postgres}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:4200,http://localhost:8080}
     ports:
-      - "5050:5000"
+      - "${API_PORT:-5050}:5000"
     depends_on:
       postgres:
         condition: service_healthy
@@ -38,7 +39,7 @@ services:
       dockerfile: frontend/Dockerfile
     container_name: taskapp-web
     ports:
-      - "8080:80"
+      - "${WEB_PORT:-8080}:80"
     depends_on:
       - api
 

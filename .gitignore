@@ -17,6 +17,9 @@ obj/
 
 # Environment
 appsettings.Development.json
+.env
+.env.local
+.env.*.local
 
 # Planning docs
 PLAN.md

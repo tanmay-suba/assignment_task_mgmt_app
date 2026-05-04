@@ -1,0 +1,3 @@
+api.tanmaysuba.com {
+    reverse_proxy localhost:5050
+}
